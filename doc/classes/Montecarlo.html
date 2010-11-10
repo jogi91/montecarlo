@@ -80,7 +80,9 @@
 
     <div id="description">
       <p>
-Klasse zum Berechnen eines Integrals einer gegebenen Funktion
+Klasse zum Berechnen eines Integrals einer gegebenen Funktion Für das
+Integral soll die Ruby-Library RubyGSL verwendet werden, im Moment
+berechnet sie aber nur die Funktionswerte.
 </p>
 
     </div>
@@ -108,6 +110,34 @@ Klasse zum Berechnen eines Integrals einer gegebenen Funktion
 
 
 
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">function</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">lowerBound</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">steps</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">upperBound</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
       
 
 
@@ -121,13 +151,19 @@ Klasse zum Berechnen eines Integrals einer gegebenen Funktion
         <div class="method-heading">
           <a href="Montecarlo.src/M000001.html" target="Code" class="method-signature"
             onclick="popupCode('Montecarlo.src/M000001.html');return false;">
-          <span class="method-name">new</span><span class="method-args">(function=&quot;sin(x)*x&quot;, lowerBound=0, upperBound=(Math::PI)/2, steps=10)</span>
+          <span class="method-name">new</span><span class="method-args">(function, lowerBound=0, upperBound=(Math::PI)/2, steps=10)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
 Die Variablen werden gesetzt
+</p>
+<p>
+function ist vom Typ GSL::Function
+</p>
+<p>
+alle anderen Werte sind Integers
 </p>
         </div>
       </div>
@@ -146,7 +182,8 @@ Die Variablen werden gesetzt
       
         <div class="method-description">
           <p>
-Ausgabe
+Ausgabe, <a href="Montecarlo.html">Montecarlo</a> wird ausgeführt und dann
+als String ausgegeben
 </p>
         </div>
       </div>
