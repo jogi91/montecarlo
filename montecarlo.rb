@@ -16,13 +16,13 @@ class Montecarlo
 	#Ausgabe, Montecarlo wird ausgeführt und dann als String ausgegeben
 	def to_s
 	  height = getheight
-	  puts height
+	  #puts height
 	  hitcounter = 0
 	  for i in 0..steps do
 	    hitcounter += inArea?(height)
 	  end
 	  area = height*(@upperBound-@lowerBound)
-	  return (area*hitcounter/steps).to_s
+	  return (area*hitcounter/steps)
 	end
 	
 	private
@@ -54,6 +54,33 @@ f = GSL::Function.alloc {|x|
   sin(x)*x
 }
 
-a = Montecarlo.new(f,0,PI/3,10 )
-a.steps = 10
-puts a.to_s
+a = Montecarlo.new(f,0,PI/2,10 )
+a.steps = 10000
+
+einzelwert = Array.new
+empirischerMittelwert = 0
+summe = 0
+
+1000.times { |x|
+	einzelwert[x] = a.to_s
+	summe += einzelwert[x]
+}
+puts einzelwert
+empirischerMittelwert = summe/1000
+puts empirischerMittelwert
+varianz = 0
+1000.times { |x|
+	varianz += (einzelwert[x]-empirischerMittelwert)**2
+}
+puts "varianz:"
+puts varianz
+mittlererFehlerEinzelmessung = sqrt((1/999.0)*varianz)
+puts "mittlererFehlerEinzelmessung"
+puts mittlererFehlerEinzelmessung
+mittlererFehlerMittelwert = (mittlererFehlerEinzelmessung/sqrt(1000))
+
+puts "Resultat:"
+print empirischerMittelwert
+print " ± "
+print mittlererFehlerMittelwert
+print "\n"
